@@ -5,3 +5,4 @@ pymupdf
 langchain-groq
 langchain-google-genai
 pytest
+langchain-text-splitters
