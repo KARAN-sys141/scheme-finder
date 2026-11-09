@@ -1,0 +1,7 @@
+python-dotenv
+requests
+beautifulsoup4
+pymupdf
+langchain-groq
+langchain-google-genai
+pytest
