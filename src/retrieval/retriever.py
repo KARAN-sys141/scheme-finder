@@ -2,12 +2,16 @@ import re
 
 from langchain_chroma import Chroma
 from rank_bm25 import BM25Okapi
+from sentence_transformers import CrossEncoder
 
 import config
 from src.retrieval.index import get_embeddings, load_chunks
 
+RERANK_MODEL = "BAAI/bge-reranker-v2-m3"
+
 # Split on spaces and punctuation only. (\w would break Hindi/Gujarati words at matras.)
 TOKEN = re.compile(r"[^\s\.,;:!?()\[\]{}\"'|/\\\-–—•]+")
+INDIC = re.compile(r"[\u0900-\u097F\u0A80-\u0AFF]")  # Devanagari + Gujarati
 
 
 def tokenize(text):
@@ -35,6 +39,7 @@ class SchemeRetriever:
             embedding_function=get_embeddings(),
             persist_directory=config.CHROMA_DIR,
         )
+        self._reranker = None
 
     def _hit(self, chunk_id, score):
         c = self.by_id[chunk_id]
@@ -51,7 +56,7 @@ class SchemeRetriever:
         res = self.db.similarity_search_with_score(
             query, k=k, filter=chroma_filter(scheme_ids, language)
         )
-        # score here is cosine distance: lower = closer
+        # score is cosine distance: lower = closer
         return [self._hit(doc.metadata["chunk_id"], 1 - dist) for doc, dist in res]
 
     def sparse(self, query, k=5, scheme_ids=None, language=None):
@@ -71,13 +76,31 @@ class SchemeRetriever:
                 break
         return out
 
-    def hybrid(self, query, k=5, scheme_ids=None, language=None, pool=20):
-        dense_hits = self.dense(query, pool, scheme_ids, language)
-        sparse_hits = self.sparse(query, pool, scheme_ids, language)
+    def hybrid(self, query, k=5, scheme_ids=None, language=None, pool=20, w_sparse=None):
+        # script-aware: BM25 helps Latin-script queries (English/Hinglish),
+        # but only adds noise for Hindi/Gujarati script queries
+        if w_sparse is None:
+            w_sparse = 0.0 if INDIC.search(query) else 1.0
+
         fused = {}
-        for rank, h in enumerate(dense_hits, 1):
-            fused[h["chunk_id"]] = fused.get(h["chunk_id"], 0) + 1 / (60 + rank)
-        for rank, h in enumerate(sparse_hits, 1):
-            fused[h["chunk_id"]] = fused.get(h["chunk_id"], 0) + 1 / (60 + rank)
+        for rank, h in enumerate(self.dense(query, pool, scheme_ids, language), 1):
+            fused[h["chunk_id"]] = 1 / (60 + rank)
+        if w_sparse > 0:
+            for rank, h in enumerate(self.sparse(query, pool, scheme_ids, language), 1):
+                fused[h["chunk_id"]] = fused.get(h["chunk_id"], 0) + w_sparse / (60 + rank)
+
         top = sorted(fused.items(), key=lambda x: -x[1])[:k]
         return [self._hit(cid, score) for cid, score in top]
+
+    def rerank(self, query, hits, k=5):
+        if self._reranker is None:
+            self._reranker = CrossEncoder(RERANK_MODEL, max_length=512)
+        scores = self._reranker.predict([(query, h["text"]) for h in hits])
+        order = sorted(range(len(hits)), key=lambda i: -scores[i])[:k]
+        return [{**hits[i], "score": float(scores[i])} for i in order]
+
+    def dense_rerank(self, query, k=5, scheme_ids=None, language=None, pool=20):
+        return self.rerank(query, self.dense(query, pool, scheme_ids, language), k)
+
+    def hybrid_rerank(self, query, k=5, scheme_ids=None, language=None, pool=20):
+        return self.rerank(query, self.hybrid(query, pool, scheme_ids, language, pool=pool), k)

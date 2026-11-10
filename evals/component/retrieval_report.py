@@ -23,9 +23,13 @@ ret = SchemeRetriever()
 
 MODES = {
     "dense": lambda q, row: ret.dense(q, k=K),
-    "sparse": lambda q, row: ret.sparse(q, k=K),
-    "hybrid": lambda q, row: ret.hybrid(q, k=K),
-    "hybrid+scheme_filter": lambda q, row: ret.hybrid(q, k=K, scheme_ids=row["expected_scheme_ids"]),
+    "hybrid_equal(old)": lambda q, row: ret.hybrid(q, k=K, w_sparse=1.0),
+    "hybrid_smart": lambda q, row: ret.hybrid(q, k=K),
+    "dense+rerank": lambda q, row: ret.dense_rerank(q, k=K),
+    "hybrid_smart+rerank": lambda q, row: ret.hybrid_rerank(q, k=K),
+    "hybrid_smart+rerank+filter": lambda q, row: ret.hybrid_rerank(
+        q, k=K, scheme_ids=row["expected_scheme_ids"]
+    ),
 }
 
 
@@ -40,6 +44,7 @@ def kw_rank(hits, row):
 
 results, misses = {}, defaultdict(list)
 for mode, fn in MODES.items():
+    print("running:", mode)
     stats = defaultdict(lambda: {"n": 0, "scheme": 0, "kw": 0, "mrr": 0.0})
     for row in rows:
         hits = fn(row["question"], row)
@@ -63,17 +68,17 @@ for mode, fn in MODES.items():
         for k, v in stats.items()
     }
 
-print(f"\n{'mode':<22}{'lang':<10}{'n':<4}{'scheme@5':<10}{'kw@5':<8}{'MRR'}")
+print(f"\n{'mode':<28}{'lang':<10}{'n':<4}{'scheme@5':<10}{'kw@5':<8}{'MRR'}")
 for mode, per in results.items():
     for lang in ["ALL", "en", "hi", "gu", "hinglish"]:
         if lang in per:
             v = per[lang]
-            print(f"{mode:<22}{lang:<10}{v['n']:<4}{v['scheme_hit']:<10}{v['kw_hit']:<8}{v['mrr']}")
+            print(f"{mode:<28}{lang:<10}{v['n']:<4}{v['scheme_hit']:<10}{v['kw_hit']:<8}{v['mrr']}")
     print()
 
-for mode in ["hybrid", "hybrid+scheme_filter"]:
+for mode in MODES:
     print(f"MISSES [{mode}]:", misses[mode])
 
 os.makedirs("evals/results", exist_ok=True)
-json.dump(results, open("evals/results/retrieval_day3.json", "w"), indent=2)
-print("\nsaved: evals/results/retrieval_day3.json")
+json.dump(results, open("evals/results/retrieval_day4.json", "w"), indent=2)
+print("\nsaved: evals/results/retrieval_day4.json")
