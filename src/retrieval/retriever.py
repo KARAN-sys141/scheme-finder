@@ -6,6 +6,9 @@ from sentence_transformers import CrossEncoder
 
 import config
 from src.retrieval.index import get_embeddings, load_chunks
+import torch
+
+torch.set_num_threads(1)
 
 RERANK_MODEL = "BAAI/bge-reranker-v2-m3"
 
@@ -95,7 +98,7 @@ class SchemeRetriever:
     def rerank(self, query, hits, k=5):
         if self._reranker is None:
             self._reranker = CrossEncoder(RERANK_MODEL, max_length=512)
-        scores = self._reranker.predict([(query, h["text"]) for h in hits])
+            scores = self._reranker.predict([(query, h["text"]) for h in hits], batch_size=4)
         order = sorted(range(len(hits)), key=lambda i: -scores[i])[:k]
         return [{**hits[i], "score": float(scores[i])} for i in order]
 
