@@ -17,3 +17,4 @@ CHROMA_DIR = "chroma_db"
 RETRIEVAL_MODE = "hybrid_smart+rerank"  # dense | hybrid_smart | dense+rerank | hybrid_smart+rerank
 TOP_K = 5
 ANSWERS_PATH = "evals/results/answers_day5.jsonl"
+JUDGE_MODEL = "openai/gpt-oss-20b"

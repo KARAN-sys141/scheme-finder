@@ -1,0 +1,91 @@
+{
+  "ALL": {
+    "n": 21,
+    "faithfulness": 0.98,
+    "answer_relevancy": 0.91,
+    "hallucination": 0.86,
+    "correctness": 0.78,
+    "language_match": 0.93,
+    "simplicity": 0.74
+  },
+  "by_language": {
+    "en": {
+      "n": 5,
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.88,
+      "hallucination": 1.0,
+      "correctness": 0.82,
+      "language_match": 1.0,
+      "simplicity": 0.78
+    },
+    "hi": {
+      "n": 5,
+      "faithfulness": 0.93,
+      "answer_relevancy": 1.0,
+      "hallucination": 0.8,
+      "correctness": 0.96,
+      "language_match": 0.88,
+      "simplicity": 0.74
+    },
+    "gu": {
+      "n": 6,
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.83,
+      "hallucination": 0.83,
+      "correctness": 0.7,
+      "language_match": 1.0,
+      "simplicity": 0.68
+    },
+    "hinglish": {
+      "n": 5,
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.93,
+      "hallucination": 0.8,
+      "correctness": 0.64,
+      "language_match": 0.84,
+      "simplicity": 0.78
+    }
+  },
+  "by_category": {
+    "factual": {
+      "n": 8,
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.92,
+      "hallucination": 0.88,
+      "correctness": 0.82,
+      "language_match": 0.9,
+      "simplicity": 0.85
+    },
+    "eligibility": {
+      "n": 8,
+      "faithfulness": 0.96,
+      "answer_relevancy": 1.0,
+      "hallucination": 0.88,
+      "correctness": 0.96,
+      "language_match": 1.0,
+      "simplicity": 0.79
+    },
+    "comparison": {
+      "n": 3,
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.92,
+      "hallucination": 1.0,
+      "correctness": 0.6,
+      "language_match": 0.8,
+      "simplicity": 0.47
+    },
+    "cross_lingual": {
+      "n": 2,
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.5,
+      "hallucination": 0.5,
+      "correctness": 0.1,
+      "language_match": 1.0,
+      "simplicity": 0.55
+    }
+  },
+  "deterministic": {
+    "avg_words": 58,
+    "with_citation_pct": 90
+  }
+}
