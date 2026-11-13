@@ -18,3 +18,4 @@ RETRIEVAL_MODE = "hybrid_smart+rerank"  # dense | hybrid_smart | dense+rerank | 
 TOP_K = 5
 ANSWERS_PATH = "evals/results/answers_day5.jsonl"
 JUDGE_MODEL = "openai/gpt-oss-20b"
+EXTRACT_MODEL = JUDGE_MODEL

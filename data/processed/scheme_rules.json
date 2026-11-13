@@ -4,20 +4,65 @@
     "level": "central",
     "benefit": "Rs 6,000 per year in three installments of Rs 2,000 every four months",
     "base_requirements": [
-      {"field": "owns_farmland", "op": "==", "value": true, "reason": "Only landholding farmer families are covered; farmers who do not own land are not eligible"}
+      {
+        "field": "owns_farmland",
+        "op": "==",
+        "value": true,
+        "reason": "Only landholding farmer families are covered; farmers who do not own land are not eligible"
+      }
     ],
     "routes": [],
     "exclusions": [
-      {"field": "is_institutional_landholder", "op": "==", "value": true, "reason": "Institutional landholders are excluded"},
-      {"field": "pays_income_tax", "op": "==", "value": true, "reason": "Persons who paid income tax in the last assessment year are excluded"},
-      {"field": "is_practising_professional", "op": "==", "value": true, "reason": "Registered, practising doctors, engineers, lawyers, chartered accountants and architects are excluded"},
-      {"field": "is_govt_employee_or_retired_officer", "op": "==", "value": true, "reason": "Serving or retired government officers and employees are excluded (except MTS, Class IV, Group D)"},
-      {"field": "monthly_pension_rs", "op": ">=", "value": 10000, "reason": "Retired pensioners with monthly pension of Rs 10,000 or more are excluded (except MTS, Class IV, Group D)"},
-      {"field": "holds_constitutional_post", "op": "==", "value": true, "reason": "Former or present holders of constitutional posts, ministers, MPs, MLAs, mayors and district panchayat chairpersons are excluded"},
-      {"field": "is_nri", "op": "==", "value": true, "reason": "Non-resident Indian landholding families are excluded"}
+      {
+        "field": "is_institutional_landholder",
+        "op": "==",
+        "value": true,
+        "reason": "Institutional landholders are excluded"
+      },
+      {
+        "field": "pays_income_tax",
+        "op": "==",
+        "value": true,
+        "reason": "Persons who paid income tax in the last assessment year are excluded"
+      },
+      {
+        "field": "is_practising_professional",
+        "op": "==",
+        "value": true,
+        "reason": "Registered, practising doctors, engineers, lawyers, chartered accountants and architects are excluded"
+      },
+      {
+        "field": "is_govt_employee_or_retired_officer",
+        "op": "==",
+        "value": true,
+        "reason": "Serving or retired government officers and employees are excluded (except MTS, Class IV, Group D)"
+      },
+      {
+        "field": "monthly_pension_rs",
+        "op": ">=",
+        "value": 10000,
+        "reason": "Retired pensioners with monthly pension of Rs 10,000 or more are excluded (except MTS, Class IV, Group D)"
+      },
+      {
+        "field": "holds_constitutional_post",
+        "op": "==",
+        "value": true,
+        "reason": "Former or present holders of constitutional posts, ministers, MPs, MLAs, mayors and district panchayat chairpersons are excluded"
+      },
+      {
+        "field": "is_nri",
+        "op": "==",
+        "value": true,
+        "reason": "Non-resident Indian landholding families are excluded"
+      }
     ],
-    "required_fields": ["owns_farmland", "pays_income_tax", "is_practising_professional", "is_govt_employee_or_retired_officer"],
-    "assumptions": []
+    "required_fields": [
+      "owns_farmland",
+      "pays_income_tax"
+    ],
+    "assumptions": [
+      "Professional, government-employee, pension, constitutional-post, NRI and institutional-landholder exclusions are not asked in chat; the answer lists them as conditions"
+    ]
   },
   "pmjay": {
     "name": "Ayushman Bharat PM-JAY",
@@ -25,62 +70,176 @@
     "benefit": "Rs 5 lakh per family per year, cashless treatment at empanelled hospitals",
     "base_requirements": [],
     "routes": [
-      {"name": "Ayushman Vay Vandana (age 70 or above, any income)", "all_of": [
-        {"field": "age", "op": ">=", "value": 70, "reason": "All citizens aged 70 and above are eligible irrespective of income"}
-      ]},
-      {"name": "SECC 2011 listed family", "all_of": [
-        {"field": "secc_listed", "op": "==", "value": true, "reason": "Families listed in SECC 2011 deprivation or occupational categories are eligible"}
-      ]}
+      {
+        "name": "Ayushman Vay Vandana (age 70 or above, any income)",
+        "all_of": [
+          {
+            "field": "age",
+            "op": ">=",
+            "value": 70,
+            "reason": "All citizens aged 70 and above are eligible irrespective of income"
+          }
+        ]
+      },
+      {
+        "name": "SECC 2011 listed family",
+        "all_of": [
+          {
+            "field": "secc_listed",
+            "op": "==",
+            "value": true,
+            "reason": "Families listed in SECC 2011 deprivation or occupational categories are eligible"
+          }
+        ]
+      }
     ],
     "exclusions": [],
-    "required_fields": ["age", "secc_listed"],
-    "assumptions": ["SECC listing cannot be known from the chat; the bot should tell the user to check on the official PM-JAY portal"]
+    "required_fields": [
+      "age",
+      "secc_listed"
+    ],
+    "assumptions": [
+      "SECC listing cannot be known from the chat; the bot should tell the user to check on the official PM-JAY portal"
+    ]
   },
   "vahli_dikri": {
     "name": "Vahli Dikri Yojana",
     "level": "gujarat",
     "benefit": "Rs 4,000 at Class 1, Rs 6,000 at Class 9, Rs 1,00,000 after Class 12 higher education or marriage",
     "base_requirements": [
-      {"field": "state", "op": "==", "value": "Gujarat", "reason": "Gujarat residents only"},
-      {"field": "family_income_rs", "op": "<=", "value": 200000, "reason": "Family annual income must be below Rs 2 lakh"},
-      {"field": "daughter_order", "op": "<=", "value": 2, "reason": "Benefit is given to only two live girl children per family"},
-      {"field": "daughter_birth_date", "op": ">", "value": "2019-08-02", "reason": "Girl child must be born after 02-08-2019"}
+      {
+        "field": "state",
+        "op": "==",
+        "value": "Gujarat",
+        "reason": "Gujarat residents only"
+      },
+      {
+        "field": "family_income_rs",
+        "op": "<=",
+        "value": 200000,
+        "reason": "Family annual income must be below Rs 2 lakh"
+      },
+      {
+        "field": "daughter_order",
+        "op": "<=",
+        "value": 2,
+        "reason": "Benefit is given to only two live girl children per family"
+      },
+      {
+        "field": "daughter_birth_date",
+        "op": ">",
+        "value": "2019-08-02",
+        "reason": "Girl child must be born after 02-08-2019"
+      }
     ],
     "routes": [],
     "exclusions": [],
-    "required_fields": ["state", "family_income_rs", "daughter_order", "daughter_birth_date"],
-    "assumptions": ["Source says income 'less than Rs 2 lakh'; the checker uses <= 200000 and the bot should say 'up to Rs 2 lakh' only if the official page does"]
+    "required_fields": [
+      "state",
+      "family_income_rs",
+      "daughter_order",
+      "daughter_birth_date"
+    ],
+    "assumptions": [
+      "Source says income 'less than Rs 2 lakh'; the checker uses <= 200000 and the bot should say 'up to Rs 2 lakh' only if the official page does"
+    ]
   },
   "ma_yojana": {
     "name": "Mukhyamantri Amrutum (MA) Yojana",
     "level": "gujarat",
     "benefit": "Rs 5 lakh per family per year, cashless treatment at empanelled hospitals",
     "base_requirements": [
-      {"field": "state", "op": "==", "value": "Gujarat", "reason": "Gujarat residents only"}
+      {
+        "field": "state",
+        "op": "==",
+        "value": "Gujarat",
+        "reason": "Gujarat residents only"
+      }
     ],
     "routes": [
-      {"name": "BPL family in state BPL list (MA Yojana)", "all_of": [
-        {"field": "is_bpl_listed", "op": "==", "value": true, "reason": "Families in the state BPL list are eligible"}
-      ]},
-      {"name": "Income up to Rs 4 lakh (MA Vatsalya)", "all_of": [
-        {"field": "family_income_rs", "op": "<=", "value": 400000, "reason": "Families marginally above poverty line with income up to Rs 4,00,000"}
-      ]},
-      {"name": "Senior citizen, family income up to Rs 6 lakh (MA Vatsalya)", "all_of": [
-        {"field": "age", "op": ">=", "value": 60, "reason": "Senior citizen"},
-        {"field": "family_income_rs", "op": "<=", "value": 600000, "reason": "Total family annual income up to Rs 6,00,000"}
-      ]},
-      {"name": "ASHA worker", "all_of": [
-        {"field": "is_asha_worker", "op": "==", "value": true, "reason": "ASHA workers are covered"}
-      ]},
-      {"name": "Accredited reporter", "all_of": [
-        {"field": "is_accredited_reporter", "op": "==", "value": true, "reason": "Accredited reporters are covered"}
-      ]},
-      {"name": "Class-3 or Class-4 fixed pay state employee", "all_of": [
-        {"field": "is_class3_4_fixed_pay_state_employee", "op": "==", "value": true, "reason": "Class-3 and Class-4 employees on fixed payroll of the state government are covered"}
-      ]}
+      {
+        "name": "BPL family in state BPL list (MA Yojana)",
+        "all_of": [
+          {
+            "field": "is_bpl_listed",
+            "op": "==",
+            "value": true,
+            "reason": "Families in the state BPL list are eligible"
+          }
+        ]
+      },
+      {
+        "name": "Income up to Rs 4 lakh (MA Vatsalya)",
+        "all_of": [
+          {
+            "field": "family_income_rs",
+            "op": "<=",
+            "value": 400000,
+            "reason": "Families marginally above poverty line with income up to Rs 4,00,000"
+          }
+        ]
+      },
+      {
+        "name": "Senior citizen, family income up to Rs 6 lakh (MA Vatsalya)",
+        "all_of": [
+          {
+            "field": "age",
+            "op": ">=",
+            "value": 60,
+            "reason": "Senior citizen"
+          },
+          {
+            "field": "family_income_rs",
+            "op": "<=",
+            "value": 600000,
+            "reason": "Total family annual income up to Rs 6,00,000"
+          }
+        ]
+      },
+      {
+        "name": "ASHA worker",
+        "all_of": [
+          {
+            "field": "is_asha_worker",
+            "op": "==",
+            "value": true,
+            "reason": "ASHA workers are covered"
+          }
+        ]
+      },
+      {
+        "name": "Accredited reporter",
+        "all_of": [
+          {
+            "field": "is_accredited_reporter",
+            "op": "==",
+            "value": true,
+            "reason": "Accredited reporters are covered"
+          }
+        ]
+      },
+      {
+        "name": "Class-3 or Class-4 fixed pay state employee",
+        "all_of": [
+          {
+            "field": "is_class3_4_fixed_pay_state_employee",
+            "op": "==",
+            "value": true,
+            "reason": "Class-3 and Class-4 employees on fixed payroll of the state government are covered"
+          }
+        ]
+      }
     ],
     "exclusions": [],
-    "required_fields": ["state", "is_bpl_listed", "family_income_rs", "age"],
-    "assumptions": ["Source says 'senior citizens' without an age; 60 is the standard Indian definition, verify on the official page", "4 lakh and 6 lakh routes are officially MA Vatsalya Yojana criteria; MA Yojana itself covers the state BPL list"]
+    "required_fields": [
+      "state",
+      "is_bpl_listed",
+      "family_income_rs",
+      "age"
+    ],
+    "assumptions": [
+      "Source says 'senior citizens' without an age; 60 is the standard Indian definition, verify on the official page",
+      "4 lakh and 6 lakh routes are officially MA Vatsalya Yojana criteria; MA Yojana itself covers the state BPL list"
+    ]
   }
 }
