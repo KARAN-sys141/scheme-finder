@@ -1,39 +1,87 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#1a1033">
   <title>SchemeMitra</title>
   <link rel="stylesheet" href="/static/style.css">
+  <script>
+    try {
+      var savedTheme = localStorage.getItem("theme");
+      var preferLight = window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches;
+      document.documentElement.setAttribute("data-theme", savedTheme || (preferLight ? "light" : "dark"));
+    } catch (e) {}
+  </script>
 </head>
 <body>
+  <div class="bg" aria-hidden="true">
+    <span class="orb o1"></span>
+    <span class="orb o2"></span>
+    <span class="orb o3"></span>
+  </div>
+  <div id="fx" class="fx" aria-hidden="true"></div>
+
   <div class="app">
     <header class="top">
-      <div class="brand">
-        <h1>SchemeMitra</h1>
-        <p id="t-sub"></p>
+      <div class="brand-row">
+        <div class="logo" aria-hidden="true">
+          <svg viewBox="0 0 48 48" width="42" height="42">
+            <defs>
+              <linearGradient id="lg" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#c4b5fd"></stop>
+                <stop offset="1" stop-color="#6d28d9"></stop>
+              </linearGradient>
+            </defs>
+            <rect width="48" height="48" rx="14" fill="url(#lg)"></rect>
+            <path d="M24 10.5l11 4.2v8.3c0 7.2-4.7 12.3-11 14.5-6.300-2.200-11-7.300-11-14.500v-8.300z" fill="rgba(255,255,255,0.95)"></path>
+            <path d="M18.500 24l4 4 7.500-8" fill="none" stroke="#6d28d9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </div>
+        <div class="brand">
+          <h1>SchemeMitra</h1>
+          <p id="t-sub"></p>
+        </div>
+        <div class="tools">
+          <button id="theme-btn" class="icon-btn" type="button" aria-label="Theme"></button>
+          <button id="new-chat" class="icon-btn wide" type="button" aria-label="New chat">
+            <span class="plus">+</span><span id="new-chat-label" class="lbl"></span>
+          </button>
+        </div>
       </div>
-      <div class="controls">
-        <label class="sr-only" for="ui-lang">Language</label>
-        <select id="ui-lang">
-          <option value="en">English</option>
-          <option value="hi">हिन्दी</option>
-          <option value="gu">ગુજરાતી</option>
-          <option value="hinglish">Hinglish</option>
-        </select>
-        <button id="new-chat" type="button"></button>
+      <div id="lang-bar" class="lang-bar" role="group" aria-label="Language">
+        <button type="button" class="lang-btn" data-lang="en">English</button>
+        <button type="button" class="lang-btn" data-lang="hi">हिन्दी</button>
+        <button type="button" class="lang-btn" data-lang="gu">ગુજરાતી</button>
+        <button type="button" class="lang-btn" data-lang="hinglish">Hinglish</button>
       </div>
     </header>
 
     <main id="messages" class="messages" aria-live="polite"></main>
-    <div id="chips" class="chips"></div>
+    <button id="to-bottom" class="to-bottom" type="button" aria-label="Scroll to latest" hidden>&#8595;</button>
 
     <form id="composer" class="composer" autocomplete="off">
-      <input id="input" type="text" maxlength="500" required>
-      <button id="send" type="submit"></button>
+      <div class="field">
+        <textarea id="input" rows="1" maxlength="500" required></textarea>
+        <span id="counter" class="counter"></span>
+      </div>
+      <button id="mic" class="icon-btn mic" type="button" aria-label="Voice input" hidden>
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="9" y="3" width="6" height="12" rx="3"></rect>
+          <path d="M5 11a7 7 0 0 0 14 0"></path>
+          <path d="M12 18v3"></path>
+        </svg>
+      </button>
+      <button id="send" class="send" type="submit" aria-label="Send">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 19V5"></path>
+          <path d="M5 12l7-7 7 7"></path>
+        </svg>
+      </button>
     </form>
     <footer id="t-disclaimer" class="disclaimer"></footer>
   </div>
+
   <script src="/static/app.js"></script>
 </body>
 </html>
