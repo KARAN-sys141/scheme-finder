@@ -1,0 +1,30 @@
+{"id": "G001", "language": "en", "category": "factual", "route": "rag", "kind": "info", "scores": {"faithfulness": 1.0, "answer_relevancy": 1.0, "correctness": 1.0, "task_completion": 1.0}}
+{"id": "G002", "language": "hi", "category": "factual", "route": "rag", "kind": "info", "scores": {"faithfulness": 1.0, "answer_relevancy": 0.8, "correctness": 1.0, "task_completion": 1.0}}
+{"id": "G003", "language": "gu", "category": "factual", "route": "rag", "kind": "info", "scores": {"faithfulness": 1.0, "answer_relevancy": 1.0, "correctness": 1.0, "task_completion": 1.0}}
+{"id": "G004", "language": "hinglish", "category": "factual", "route": "rag", "kind": "info", "scores": {"faithfulness": null, "answer_relevancy": 1.0, "correctness": 1.0, "task_completion": 1.0}}
+{"id": "G005", "language": "gu", "category": "factual", "route": "rag", "kind": "info", "scores": {"faithfulness": 1.0, "answer_relevancy": 1.0, "correctness": 1.0, "task_completion": 1.0}}
+{"id": "G006", "language": "hinglish", "category": "factual", "route": "rag", "kind": "info", "scores": {"faithfulness": 1.0, "answer_relevancy": 0.5, "correctness": 1.0, "task_completion": 1.0}}
+{"id": "G007", "language": "en", "category": "factual", "route": "rag", "kind": "info", "scores": {"faithfulness": 1.0, "answer_relevancy": 1.0, "correctness": 1.0, "task_completion": 0.9}}
+{"id": "G008", "language": "hi", "category": "factual", "route": "rag", "kind": "info", "scores": {"faithfulness": null, "answer_relevancy": 1.0, "correctness": 1.0, "task_completion": 1.0}}
+{"id": "G009", "language": "en", "category": "eligibility", "route": "graph", "kind": "verdict", "scores": {"faithfulness": 1.0, "answer_relevancy": 1.0, "correctness": 1.0, "task_completion": 1.0}}
+{"id": "G010", "language": "hi", "category": "eligibility", "route": "graph", "kind": "verdict", "scores": {"faithfulness": null, "answer_relevancy": 1.0, "correctness": 1.0, "task_completion": 1.0}}
+{"id": "G011", "language": "gu", "category": "eligibility", "route": "graph", "kind": "verdict", "scores": {"faithfulness": 1.0, "answer_relevancy": 0.67, "correctness": 1.0, "task_completion": 1.0}}
+{"id": "G012", "language": "hinglish", "category": "eligibility", "route": "graph", "kind": "verdict", "scores": {"faithfulness": 1.0, "answer_relevancy": 1.0, "correctness": 0.7, "task_completion": 0.8}}
+{"id": "G013", "language": "en", "category": "eligibility", "route": "graph", "kind": "verdict", "scores": {"faithfulness": 1.0, "answer_relevancy": 1.0, "correctness": 0.6, "task_completion": 1.0}}
+{"id": "G014", "language": "gu", "category": "eligibility", "route": "graph", "kind": "verdict", "scores": {"faithfulness": 1.0, "answer_relevancy": 1.0, "correctness": 1.0, "task_completion": 1.0}}
+{"id": "G015", "language": "hinglish", "category": "eligibility", "route": "graph", "kind": "verdict", "scores": {"faithfulness": 1.0, "answer_relevancy": 1.0, "correctness": 0.5, "task_completion": 0.2}}
+{"id": "G016", "language": "hi", "category": "eligibility", "route": "graph", "kind": "verdict", "scores": {"faithfulness": null, "answer_relevancy": 1.0, "correctness": 0.4, "task_completion": 0.8}}
+{"id": "G017", "language": "hinglish", "category": "missing_info", "route": "graph", "kind": "followup", "scores": {"task_completion": 0.7}}
+{"id": "G018", "language": "en", "category": "missing_info", "route": "graph", "kind": "followup", "scores": {"task_completion": 0.7}}
+{"id": "G019", "language": "hi", "category": "missing_info", "route": "graph", "kind": "followup", "scores": {"task_completion": 0.5}}
+{"id": "G020", "language": "gu", "category": "missing_info", "route": "graph", "kind": "followup", "scores": {"task_completion": 1.0}}
+{"id": "G021", "language": "en", "category": "comparison", "route": "rag", "kind": "info", "scores": {"faithfulness": 1.0, "answer_relevancy": 0.75, "correctness": 0.3, "task_completion": 0.2}}
+{"id": "G022", "language": "hinglish", "category": "comparison", "route": "rag", "kind": "info", "scores": {"faithfulness": 1.0, "answer_relevancy": 1.0, "correctness": 0.5, "task_completion": 0.2}}
+{"id": "G023", "language": "hi", "category": "comparison", "route": "rag", "kind": "info", "scores": {"faithfulness": 1.0, "answer_relevancy": 1.0, "correctness": 1.0, "task_completion": 0.9}}
+{"id": "G024", "language": "en", "category": "out_of_scope", "route": "rag", "kind": "info", "scores": {"task_completion": 1.0}}
+{"id": "G025", "language": "hinglish", "category": "out_of_scope", "route": "rag", "kind": "info", "scores": {"task_completion": 1.0}}
+{"id": "G026", "language": "hi", "category": "out_of_scope", "route": "rag", "kind": "info", "scores": {"task_completion": 1.0}}
+{"id": "G027", "language": "en", "category": "adversarial", "route": "rag", "kind": "info", "scores": {"task_completion": 1.0}}
+{"id": "G028", "language": "hinglish", "category": "adversarial", "route": "rag", "kind": "info", "scores": {"task_completion": 1.0}}
+{"id": "G029", "language": "gu", "category": "cross_lingual", "route": "rag", "kind": "info", "scores": {"faithfulness": 0.8, "answer_relevancy": 1.0, "correctness": 0.4, "task_completion": 0.2}}
+{"id": "G030", "language": "gu", "category": "cross_lingual", "route": "rag", "kind": "info", "scores": {"faithfulness": 1.0, "answer_relevancy": 1.0, "correctness": 0.0, "task_completion": 0.0}}

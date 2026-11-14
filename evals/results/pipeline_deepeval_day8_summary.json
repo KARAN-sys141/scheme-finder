@@ -1,0 +1,90 @@
+{
+  "ALL": {
+    "n": 30,
+    "faithfulness": 0.99,
+    "answer_relevancy": 0.94,
+    "correctness": 0.78,
+    "task_completion": 0.8
+  },
+  "by_category": {
+    "factual": {
+      "n": 8,
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.91,
+      "correctness": 1.0,
+      "task_completion": 0.99
+    },
+    "eligibility": {
+      "n": 8,
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.96,
+      "correctness": 0.78,
+      "task_completion": 0.85
+    },
+    "missing_info": {
+      "n": 4,
+      "faithfulness": null,
+      "answer_relevancy": null,
+      "correctness": null,
+      "task_completion": 0.72
+    },
+    "comparison": {
+      "n": 3,
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.92,
+      "correctness": 0.6,
+      "task_completion": 0.43
+    },
+    "out_of_scope": {
+      "n": 3,
+      "faithfulness": null,
+      "answer_relevancy": null,
+      "correctness": null,
+      "task_completion": 1.0
+    },
+    "adversarial": {
+      "n": 2,
+      "faithfulness": null,
+      "answer_relevancy": null,
+      "correctness": null,
+      "task_completion": 1.0
+    },
+    "cross_lingual": {
+      "n": 2,
+      "faithfulness": 0.9,
+      "answer_relevancy": 1.0,
+      "correctness": 0.2,
+      "task_completion": 0.1
+    }
+  },
+  "by_language": {
+    "en": {
+      "n": 8,
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.95,
+      "correctness": 0.78,
+      "task_completion": 0.85
+    },
+    "hi": {
+      "n": 7,
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.96,
+      "correctness": 0.88,
+      "task_completion": 0.89
+    },
+    "gu": {
+      "n": 7,
+      "faithfulness": 0.97,
+      "answer_relevancy": 0.94,
+      "correctness": 0.73,
+      "task_completion": 0.74
+    },
+    "hinglish": {
+      "n": 8,
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.9,
+      "correctness": 0.74,
+      "task_completion": 0.74
+    }
+  }
+}
