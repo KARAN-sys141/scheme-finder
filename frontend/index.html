@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SchemeMitra</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="app">
+    <header class="top">
+      <div class="brand">
+        <h1>SchemeMitra</h1>
+        <p id="t-sub"></p>
+      </div>
+      <div class="controls">
+        <label class="sr-only" for="ui-lang">Language</label>
+        <select id="ui-lang">
+          <option value="en">English</option>
+          <option value="hi">हिन्दी</option>
+          <option value="gu">ગુજરાતી</option>
+          <option value="hinglish">Hinglish</option>
+        </select>
+        <button id="new-chat" type="button"></button>
+      </div>
+    </header>
+
+    <main id="messages" class="messages" aria-live="polite"></main>
+    <div id="chips" class="chips"></div>
+
+    <form id="composer" class="composer" autocomplete="off">
+      <input id="input" type="text" maxlength="500" required>
+      <button id="send" type="submit"></button>
+    </form>
+    <footer id="t-disclaimer" class="disclaimer"></footer>
+  </div>
+  <script src="/static/app.js"></script>
+</body>
+</html>

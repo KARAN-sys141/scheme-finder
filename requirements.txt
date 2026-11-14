@@ -14,3 +14,6 @@ langchain-core
 rank_bm25
 deepeval
 langgraph
+fastapi
+uvicorn
+httpx
